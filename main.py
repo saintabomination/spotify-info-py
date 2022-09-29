@@ -14,15 +14,18 @@ def request_current_song():
 
     if request.status_code == 200:
         data = request.json()
-        return {
+        playing = data['is_playing']
+
+        if not playing:
+            return 'None'
+
+        name_data = {
             'author': data['item']['artists'][0]['name'],
             'name': data['item']['name']
         }
+        return f'{name_data["author"]} - {name_data["name"]}'
     else:
-        return {
-            'author': 'N/A',
-            'name': 'N/A'
-        }
+        return 'None'
 
 def main():
     current_song = request_current_song()
