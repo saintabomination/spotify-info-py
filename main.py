@@ -1,7 +1,9 @@
+import os
 from dotenv import dotenv_values
 import requests
 
-ENV_PATH = '.env'
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+ENV_PATH = os.path.join(BASE_DIR, '.env')
 ENV_FILE = dotenv_values(ENV_PATH)
 ACCESS_TOKEN = ENV_FILE['ACCESS_TOKEN']
 API_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing'
