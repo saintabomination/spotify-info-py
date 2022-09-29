@@ -14,12 +14,19 @@ def request_current_song():
 
     if request.status_code == 200:
         data = request.json()
-        print(data)
+        return {
+            'author': data['item']['artists'][0]['name'],
+            'name': data['item']['name']
+        }
     else:
-        return 'N/A'
+        return {
+            'author': 'N/A',
+            'name': 'N/A'
+        }
 
 def main():
-    request_current_song()
+    current_song = request_current_song()
+    print(current_song)
 
 if __name__ == '__main__':
     main()
